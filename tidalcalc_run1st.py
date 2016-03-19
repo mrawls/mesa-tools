@@ -6,12 +6,15 @@ Reads a MESA history.data file
 Prints out the columns you need for tidalcalc.py
 NOTE: Only keeps timestamps where the star age is > 10^7 years
 
-IMPORTANT: Manually define infile, outfile, and MESA LOG directory below
+IMPORTANT: Manually define outfile, and MESA LOG directory below
 (You can easily put the names of different columns if you want them instead)
 '''
-infile = '../jeanshare/history_new.data'
-outfile = '../jeanshare/mesa_histshort_test.data'
-modeldir = ms.history_data('../../jeanshare/LOGS_2.15_really')
+
+#outfile = '../../jeanshare/histshort_2.15v2.data'
+#modeldir = ms.history_data('../../jeanshare/LOGS_2.15_v2')
+outfile =   '../../RG_ELCmodeling/9291629/mesa/WORK_DIR/histshort_1.14.data'
+modeldir =  '../../RG_ELCmodeling/9291629/mesa/WORK_DIR/LOGS_1.14'
+modeldir = ms.history_data(modeldir)
 
 ages = modeldir.get('star_age')
 teffs = modeldir.get('log_Teff')
