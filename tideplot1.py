@@ -7,18 +7,19 @@ Makes a plot like Fig 4 in Verbunt & Phinney (1995)
 infile = '../../RGEB_tideinfo.txt'
 colors = ['#ffffcc','#ffeda0','#fed976','#feb24c','#fd8d3c','#fc4e2a','#e31a1c','#b10026']
 
-systems, eccs, tides = np.loadtxt(infile, usecols=(0,1,2), comments='#', unpack=True)
+systems, eccs, ecc_errs, tides = np.loadtxt(infile, usecols=(0,1,2,3), comments='#', unpack=True)
 
 fig = plt.figure()
 cm = plt.cm.get_cmap('YlOrRd')
 
 ax = fig.add_subplot(1,1,1)
-plt.axis([5, -8, 0, 0.49])
+plt.axis([5, -8, -0.01, 0.49])
 plt.xlabel(r'$\log [-(\Delta \ln e)]$', size=30)
 plt.ylabel(r'$e$', size=30)
 plt.axvline(x=0, ls=':', color='k')
-for system, ecc, tide, color in zip(systems, eccs, tides, colors):
-    points = ax.scatter(tide, ecc, s=200, c=color)
+for system, ecc, err, tide, color in zip(systems, eccs, ecc_errs, tides, colors):
+    #points = ax.errorbar(tide, ecc, yerr=err, ms=20, c=color)
+    points = ax.scatter(tide, ecc, s=250, c=color) #errorbar super small = pointless
     if system == 3955867:
         ax.annotate(str(int(system)), xy=(tide, ecc), xytext=(tide+0.3, ecc+0.01), size=20)
     else:
@@ -26,7 +27,7 @@ for system, ecc, tide, color in zip(systems, eccs, tides, colors):
 
 axnew = fig.add_subplot(15,1,1)
 cmap = mpl.colors.ListedColormap(colors)
-bounds = [19.38446, 20.6864, 33.65685, 120.3903, 197.9182, 207.1082, 235.29852, 250]
+bounds = [19.38446, 20.686424, 33.65685, 120.3903, 197.9182, 207.1082, 235.29852, 250]
 norm = mpl.colors.BoundaryNorm(bounds, cmap.N)
 cb = mpl.colorbar.ColorbarBase(axnew, cmap=cmap, norm=norm, orientation='horizontal')
 axnew.get_yaxis().set_ticks([])

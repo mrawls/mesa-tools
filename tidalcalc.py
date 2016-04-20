@@ -31,23 +31,23 @@ NOTE cz_xm is NOT written out by default and you will need to turn it on!
 #Porb = 171.27688    # orbital period in days, needed for delta-ln-e
 #t0 = 1e7            # age in years to begin integrating star (set near end of MS phase)
 
-#sysname = '8702921'
-#modeldir =  '../../RG_ELCmodeling/'+sysname+'/mesa/LOGS_1.59'
-#Mstar = 1.59        # mass of main star used in MESA model, needed for delta-ln-e
-#Rstar = 5.24        # present radius for plot
-#Mcomp = 0.265       # mass of other star in binary, assumed constant, needed for delta-ln-e
-#Zmass = 0.017100
-#Porb = 19.38446     # orbital period in days, needed for delta-ln-e
-#t0 = 1.7e9          # age in years to begin integrating star (set near end of MS phase)
+sysname = '8702921'
+modeldir =  '../../RG_ELCmodeling/'+sysname+'/mesa/LOGS_1.59'
+Mstar = 1.59        # mass of main star used in MESA model, needed for delta-ln-e
+Rstar = 5.24        # present radius for plot
+Mcomp = 0.272       # mass of other star in binary, assumed constant, needed for delta-ln-e
+Zmass = 0.017100
+Porb = 19.38446     # orbital period in days, needed for delta-ln-e
+t0 = 1.7e9          # age in years to begin integrating star (set near end of MS phase)
 
-sysname = '9291629'
-modeldir =  '../../RG_ELCmodeling/'+sysname+'/mesa/LOGS_1.1274'
-Mstar = 1.1274      # mass of main star used in MESA model, needed for delta-ln-e
-Rstar = 7.932       # present radius for plot
-Mcomp = 1.1147      # mass of other star in binary, assumed constant, needed for delta-ln-e
-Zmass = 0.014658
-Porb = 20.686424    # orbital period in days, needed for delta-ln-e
-t0 = 5e9            # age in years to begin integrating star (set near end of MS phase)
+#sysname = '9291629'
+#modeldir =  '../../RG_ELCmodeling/'+sysname+'/mesa/LOGS_1.1274'
+#Mstar = 1.1274      # mass of main star used in MESA model, needed for delta-ln-e
+#Rstar = 7.932       # present radius for plot
+#Mcomp = 1.1147      # mass of other star in binary, assumed constant, needed for delta-ln-e
+#Zmass = 0.014658
+#Porb = 20.686424    # orbital period in days, needed for delta-ln-e
+#t0 = 5e9            # age in years to begin integrating star (set near end of MS phase)
 
 #sysname = '3955867'
 #modeldir =  '../../RG_ELCmodeling/'+sysname+'/mesa/LOGS_1.103'
@@ -65,7 +65,7 @@ t0 = 5e9            # age in years to begin integrating star (set near end of MS
 #Mcomp = 0.805       # mass of other star in binary, assumed constant, needed for delta-ln-e
 #Zmass = 0.002532
 #Porb = 120.3903     # orbital period in days, needed for delta-ln-e
-#t0 = 1e9          # age in years to begin integrating star (set near end of MS phase)
+#t0 = 2e9          # age in years to begin integrating star (set near end of MS phase)
 
 #sysname = '5786154'
 #modeldir =  '../../RG_ELCmodeling/'+sysname+'/mesa/LOGS_1.062'
@@ -100,7 +100,7 @@ q = Mcomp/Mstar # mass ratio = M_comp/M
 
 # ***** DEFINE AT MOST ONE OF THESE TWO THINGS ***** #
 Rnow = Rstar  		# option to stop integration at some radius
-#idxstop = 500      # option to stop integration at some index
+#idxstop = 2890      # option to stop integration at some index
 # ***** DEFINE AT MOST ONE OF THESE TWO THINGS ***** #
 
 # Read in MESA stellar model data from a history file
@@ -168,7 +168,7 @@ else:
 # Final result of the integral
 Int = Intlist[idxstop]
 print('Value of I is {0}, so log I is {1}'.format(Int, np.log10(Int)))
-print('Present Teff = {0}, logg = {1}'.format(Teffs[idxstop], loggs[idxstop]))
+print('Teff = {0}, logg = {1}'.format(Teffs[idxstop], loggs[idxstop]))
 
 # Evaluate the final expression
 dlne = dlnecalc(f, Mcomp, q, Int, Porb)
